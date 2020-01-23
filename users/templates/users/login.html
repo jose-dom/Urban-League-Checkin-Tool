@@ -1,0 +1,33 @@
+{% extends "view/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="content-section w-100 shadow">
+            <form method="POST" class="uniForm">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Login</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Need An Account?
+                    <a href="{% url 'register' %}" class="ml-2">Register</a>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5" id="form-view">
+        <div class="col-sm-4">
+            <img id="img-info" src="{% static 'images/focus.svg' %}" class="img-fluid" width="75%" height="100%" alt="fill-out-form-image" class="pr-3" >
+        </div>
+        <div class="col-sm-4 offset-4">
+            <img id="img-info" src="{% static 'images/forms00.svg' %}" class="img-fluid" width="75%" height="100%" alt="fill-out-form-image" class="pr-3" >
+        </div>
+    </div>
+{% endblock content %}
