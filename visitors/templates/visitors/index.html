@@ -1,0 +1,14 @@
+{% extends "view/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <h1>Confirm Additional Information:</h1>
+      <hr>
+      <form method="POST" class="uniForm">
+        {{ form|crispy }}
+        {% csrf_token %}
+        <hr>
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+    </div>
+{% endblock content %}

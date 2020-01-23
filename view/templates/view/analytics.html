@@ -1,0 +1,37 @@
+{% extends "view/base.html" %}
+{% block content %}
+    <!--Visitor Log-->
+    <h1 class="mb-3">Visitor Log</h1>
+    {% for result in results %}
+        <article class="media content-section w-100 shadow">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>{{ result.first_name }} {{ result.last_name }}</h3>
+                    <p class="article-content">Date: {{ result.date }}<br>Time: {{ result.time }}<br>Email: {{ result.email }}<br>Address: {{ result.address }}<br>City: {{ result.city }}<br>Phone: {{ result.phone_number }}<br>Gender: {{ result.gender }}<br>Referral: {{ result.referral }}</p>
+                </div>
+                <p class="article-content">Purpose: {{ result.purpose }}<br>Major Purpose: {{ result.major_purpose }}</p>
+            </div>
+        </article>
+    {% endfor %}
+    <!--Pagination-->
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    {% endif %}
+{% endblock content %}
+

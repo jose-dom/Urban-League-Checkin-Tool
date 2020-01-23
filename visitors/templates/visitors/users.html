@@ -1,0 +1,136 @@
+{% extends "view/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <!--<div class="col-12 offset-4">
+        <img src="{% static 'logo/eul.png' %}" width="50%" height="50%" alt="logo" class="pr-3" >
+    </div>-->
+    <div class="row" id="img-view">
+        <div class="col-sm-4">
+          <br><br><br><br>
+          <img id="img-forms" src="{% static 'images/forms.svg' %}" class="img-fluid" width="80%" height="100%" alt="fill-out-form-image" class="pr-3" >
+        </div>
+        <div class="col-sm-8">
+          <h2 class="font-weight-bold text-center pt-5 pb-5">Welcome to the Urban League of Essex County</h2>
+          <div class="card w-100 shadow">
+            <div class="card-body align-items-center">
+              <form method="POST" class="uniForm">
+                {% csrf_token %}
+      
+                <!-- Row One -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.first_name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.last_name|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Row Two -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.address|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.city|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Row Three -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.phone_number|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.email|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Row Four -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.gender|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.dob|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Row Five -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.household_income|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.referral|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Row Six -->
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.household_number|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.race|as_crispy_field }}
+                  </div>
+                </div>  
+      
+                <!-- Row Seven -->
+                <div class="form-row">
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.marital_status|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.veteran|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.disabled|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!-- Purpose Section -->
+                <div class="form-row">
+                  <h5>Main reason for coming in:</h5>
+                </div>
+      
+                <div class="form-row">
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.purpose1|as_crispy_field }}
+                    {{ form.purpose2|as_crispy_field }}
+                    {{ form.purpose3|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.purpose4|as_crispy_field }}
+                    {{ form.purpose5|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.purpose6|as_crispy_field }}
+                    {{ form.purpose7|as_crispy_field }}
+                    {{ form.purpose8|as_crispy_field }}
+                    {{ form.purpose9|as_crispy_field }}
+                  </div>
+                </div>
+      
+                <!--{{ form|crispy }}-->
+                <hr>
+                <input type="submit" class="btn btn-primary" value="Submit">
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row" id="form-view">
+      <div class="col-sm-4">
+          <img id="img-info" src="{% static 'images/info.svg' %}" class="img-fluid" width="75%" height="100%" alt="fill-out-form-image" class="pr-3" >
+      </div>
+    </div>
+    <br><br><br><br>
+{% endblock content %}
+{% block footer %}
+<!--<footer class="mb-10 pb-10">
+  <div class="mb-10 pb-10" style="width: 100%; height: auto; min-height: 374px; background-image: url({% static 'images/wave.svg' %}); background-size: 100% 100%;​">
+  </div>
+</footer>-->
+{% endblock footer %}

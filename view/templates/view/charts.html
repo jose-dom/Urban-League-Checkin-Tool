@@ -1,0 +1,180 @@
+{% load static %}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    
+    
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
+
+<script>
+    var table = $('#mainTable').DataTable({
+        //pagingType: "simple",
+        //autoWidth: true,
+        buttons: ['excel', 'pdf', 'csv']
+    });
+    table.buttons().container().appendTo('#menu');
+</script>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+<script>
+    //Monthly Visitors Graph
+    var month_trace = {
+        x: ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+        y: [{% for t in date %}{{ t }},{% endfor %}0],
+        mode: 'lines',
+        line: {
+            color: 'rgb(55, 128, 191)',
+            width: 3
+        }
+    };
+    var month_data = [month_trace];
+    Plotly.newPlot('month', month_data);    
+
+    //Gender Pie Chart
+    var gender_trace = {
+        labels: ["Male","Female","Other",""],
+        values: [{% for t in gender %}{{ t }},{% endfor %}0],
+        type: 'pie'
+    };
+    var gender_data = [gender_trace];
+    Plotly.newPlot('gender', gender_data);
+
+    //Popular Times Graph
+    var time_trace = {
+        x: ["3:00 AM","4:00 AM","5:00 AM","6:00 AM","7:00 AM","8:00 AM","9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00PM","7:00PM","8:00PM","9:00PM","10:00PM", ""],
+        y: [{% for t in time %}{{ t }},{% endfor %}0],
+        mode: 'lines',
+        line: {
+            color: 'rgb(55, 128, 191)',
+            width: 3
+        }
+    };
+    var time_data = [time_trace];
+    Plotly.newPlot('time', time_data); 
+
+    //Major Purpose Graph
+    var purpose_trace = {
+        x: ["Employment Assistance","Training Programs","Financial Information","Workshops","Housing or Rental Assistance","Young Adult Programs / Youth Programs","Youth Education","Volunteering", "Ohter", ""],
+        y: [{% for t in major %}{{ t }},{% endfor %}0],
+        mode: 'lines',
+        line: {
+            color: 'rgb(55, 128, 191)',
+            width: 3
+        }
+    };
+    var purpose_data = [purpose_trace];
+    Plotly.newPlot('purpose', purpose_data); 
+
+    //Ethnicity Pie Chart
+    var race_trace = {
+        labels: ["White","Black/Afro American","Hispanic","Asian","Mixed","Other",""],
+        values: [{% for t in ethnicity %}{{ t }},{% endfor %}0],
+        type: 'pie'
+    };
+    var race_data = [race_trace];
+    Plotly.newPlot('race', race_data);
+
+    //Visitor Income Graph
+    var income_trace = {
+        x: ["under $25,000","$25,000 - $35,000","$35,000 - $45,000","$45,000 - $55,000","$55,000 - $65,000","$65,000 - $75,000","$75,000 - $85,000", "over $85,000", ""],
+        y: [{% for t in income %}{{ t }},{% endfor %}0],
+        mode: 'lines',
+        line: {
+            color: 'rgb(55, 128, 191)',
+            width: 3
+        }
+    };
+    var income_data = [income_trace];
+    Plotly.newPlot('income', income_data); 
+</script>
+
+<!-- Paginate Visitor Log -->
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "pagingType": "simple"
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+
+<!-- Search Visitor Log-->
+<script>
+        function searchAddress() 
+        {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("AddressInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+
+            //Loop through all rows, and hide those who don't match the search query
+            for(i=0; i<tr.length; i++)
+            {
+                td = tr[i].getElementsByTagName("td")[5];
+                if(td)
+                {
+                    txtValue = td.textContent || td.innerText;
+                    if(txtValue.toUpperCase().indexOf(filter) > -1)
+                    {
+                        tr[i].style.display = "";
+                    }
+                    else
+                    {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function searchPhone() 
+        {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("PhoneInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+
+            //Loop through all rows, and hide those who don't match the search query
+            for(i=0; i<tr.length; i++)
+            {
+                td = tr[i].getElementsByTagName("td")[6];
+                if(td)
+                {
+                    txtValue = td.textContent || td.innerText;
+                    if(txtValue.toUpperCase().indexOf(filter) > -1)
+                    {
+                        tr[i].style.display = "";
+                    }
+                    else
+                    {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+</script>
+
+<script src="{% static 'view/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'view/jquery.dataTables.min.js' %}"></script>
+<!-- DataTables -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>

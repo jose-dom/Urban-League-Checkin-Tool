@@ -1,0 +1,274 @@
+<!-- Dashboard -->
+<!-- Info Cards -->
+<div class="row">
+    <!-- Card One -->
+    <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Visitors</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- Card Two -->
+    <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Referrals by Online Advertisement</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ online }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- Card Three -->
+    <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Referrals by Friend</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ friend }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- Card Four -->
+    <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Other Referrals</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ other }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!--First Row of Dashboard -->
+<div class="row">
+    <!-- Monthly Visitors -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flew-row align-items-center justisfy-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Monthly Visitors</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div id="month"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Visitor Gender</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div id="gender"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Row of Dashboard -->
+<div class="row">
+    <!-- Time -->
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Popular Times</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div id="time"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Third Row of Dashboard -->
+<div class="row">
+    <!-- Major Purpose -->
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Major Purpose</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div id="purpose"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fourth Row of Dashboard -->
+<div class="row">
+    <!-- Referrals -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Referrals</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">Friend</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" id="friend" role="progressbar" style="width: {{ friend }}%" aria-valuenow="{{ friend }}" aria-valuemin="0" aria-valuemax="{{ total }}"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Online Advertisement</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" id="online" role="progressbar" style="width: {{ online }}%" aria-valuenow="{{ online }}" aria-valuemin="100" aria-valuemax="{{ total }}"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Other</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" id="other" role="progressbar" style="width: {{ other }}%" aria-valuenow="{{ other }}" aria-valuemin="0" aria-valuemax="{{ total }}"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Visitor Ethnicity</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div id="race"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fifth Row of Dashboard -->
+<!--
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Household Income</h6>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>-->
+<!-- End of Dashboard-->
+
+<!-- Visitor Log 2.0 -->
+<div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary align-items-center">Visitor Log</h6>
+        </div>
+        <div class="card-body align-items-center">
+            <div class="table-responsive align-items-center">
+                <table class="table table-striped dt-responsive nowrap align-items-center" id="mainTable" width="100%" cellspacing="0"><!--class="table table-striped table-bordered"-->
+                    <thead>
+                        <tr>
+                            <th class="th-sm">First Name</th>
+                            <th class="th-sm">Last Name</th>
+                            <th class="th-sm">Date</th>
+                            <th class="th-sm">Time</th>
+                            <th class="th-sm">Email</th>
+                            <th class="th-sm">Purpose</th>
+                            <th class="th-sm">Gender</th>
+                            <th class="th-sm">Phone</th>
+                            <th class="th-sm">City</th>
+                            <th class="th-sm">Referral</th>
+                            <th class="th-sm">Address</th>
+                            <th class="th-sm">Major Purpose</th>
+                            <th class="th-sm">Household Income</th>
+                            <th class="th-sm">Number of People in Household</th>
+                            <th class="th-sm">Ethnicity</th>
+                            <th class="th-sm">Marital Status</th>
+                            <th class="th-sm">Veteran Status</th>
+                            <th class="th-sm">Disabled Status</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Email</th>
+                            <th>Purpose</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th>Referral</th>
+                            <th>Address</th>
+                            <th>Major Purpose</th>
+                            <th>Household Income</th>
+                            <th>Number of People in Household</th>
+                            <th>Ethnicity</th>
+                            <th>Marital Status</th>
+                            <th>Veteran Status</th>
+                            <th>Disabled Status</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td>{{ result.first_name }}</td>
+                            <td>{{ result.last_name }}</td>
+                            <td>{{ result.date }}</td>
+                            <td>{{ result.time }}</td>
+                            <td>{{ result.email }}</td>
+                            <td>{{ result.purpose }}</td>
+                            <td>{{ result.gender }}</td>
+                            <td>{{ result.phone_number }}</td>
+                            <td>{{ result.city }}</td>
+                            <td>{{ result.referral }}</td>
+                            <td>{{ result.address }}</td>
+                            <td>{{ result.major_purpose }}</td>
+                            <td>{{ result.household_income }}</td>
+                            <td>{{ result.household_number }}</td>
+                            <td>{{ result.race }}</td>
+                            <td>{{ result.marital_status }}</td>
+                            <td>{{ result.veteran }}</td>
+                            <td>{{ result.disabled }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="m-0 align-items-center" id="menu">Download Options: </div>
+        </div>
+</div>
